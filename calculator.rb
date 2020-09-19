@@ -13,7 +13,7 @@ def calc
   loop do
   puts "\nWould you like to #{operation.join(', ')} or quit?"
   response = gets.chomp
-  puts "What are you trying to #{response}"
+  puts "\nHow many values are you trying to #{response}?"
     if response == operation[0] then
       operator = :+
     elsif response == operation[1] then
@@ -27,7 +27,6 @@ def calc
     else
       break
     end
-  puts "How many values?"
   num_of_values = gets.to_i
   sum = get_values(num_of_values).inject(operator)
   puts "The total is #{sum}"
