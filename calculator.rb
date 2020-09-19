@@ -1,30 +1,34 @@
 class Calculator
-  def addition
-    puts "Add which numbers together?"
-    @value1 = gets.chomp.to_i
-    @value2 = gets.chomp.to_i
-    @response = (@value1 + @value2)
+  def get_values(x)
+    1.upto(x).map { |x|
+      puts "Value ##{x}: "
+      gets.chomp.to_i
+    }
   end
 
-  def subtraction
-    puts "Subtract which numbers from eachother?"
-    @value1 = gets.chomp.to_i
-    @value2 = gets.chomp.to_i
-    @response = (@value1 - @value2)
+  def operation
+    %w(add subtract multiply divide)
   end
 
-  def multiplication
-    puts "Multiply which numbers together?"
-    @value1 = gets.chomp.to_i
-    @value2 = gets.chomp.to_i
-    @response = (@value1 ** @value2)
-  end
-
-  def division
-    puts "Divide which numbers from eachother?"
-    @value1 = gets.chomp.to_i
-    @value2 = gets.chomp.to_i
-    @response = (@value1 / @value2)
+  def calc
+    loop do
+      puts "Would you like to #{operation.join(', ')} or quit?"
+      response = gets.chomp
+      puts "What are you trying to #{response}"
+        if response == operation[0] then
+          operator = :+
+        elsif response == operation[1] then
+          operator = :-
+        elsif response == operation[2] then
+          operator = :*
+        elsif response == operation[3] then
+          operator = :/
+        else break
+        end
+      puts "How many values?"
+      num_of_values = gets.to_i
+      sum = get_values(num_of_values).inject(operator)
+      puts "The total is #{sum.to_f}"
+    end
   end
 end
-
